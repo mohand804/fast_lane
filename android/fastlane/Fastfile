@@ -4,14 +4,15 @@ default_platform(:android)
 platform :android do
   desc "Distribute the app to the testers"
   lane :distribute do
+    sh "flutter clean"
+    sh "flutter build apk --release"
     firebase_app_distribution(
       app: "1:198160381905:android:8dcb1912b0b581f57252f0",
-      groups: "testers",
-      android_artifact_type: "APK",
-      android_artifact_path: "app/build/outputs/apk/release/app-release.apk",
-      release_notes: "Release notes",
-      testers: mohandabdlsattar@gmai.com,  
       firebase_cli_token: ENV["FIREBASE_TOKEN"],
+      testers: "mohandabdlsattar@gmail.com",
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
+      release_notes: "Release notes"
     )
   end  
 end
