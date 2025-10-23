@@ -37,13 +37,7 @@ jobs:
 
       - name: Distribute to Firebase
         env:
-          FIREBASE_TOKEN: ${{ secrets.CLI_FIREBASE_TOKEN}}
+          CLI_FIREBASE_TOKEN: ${{secrets.CLI_FIREBASE_TOKEN}}
         run: |
           cd android
           fastlane distribute
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
